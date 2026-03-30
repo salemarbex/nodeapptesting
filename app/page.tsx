@@ -33,7 +33,18 @@ const socials = [
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-zinc-100 via-zinc-50 to-white dark:from-zinc-900 dark:via-zinc-950 dark:to-black font-sans">
+    <div className="min-h-screen bg-gradient-to-br from-zinc-100 via-zinc-50 to-white dark:from-zinc-900 dark:via-zinc-950 dark:to-black font-sans relative">
+      {/* Floating Cart Button */}
+      <button className="fixed bottom-8 right-8 z-50 bg-zinc-900 text-white p-4 rounded-full shadow-lg hover:bg-zinc-700 transition-colors dark:bg-zinc-800 dark:hover:bg-zinc-700 flex items-center gap-2 animate-bounce-cart">
+        <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h7.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span className="hidden sm:inline">Cart</span>
+      </button>
+
+      {/* Free Shipping Banner */}
+      <div className="w-full bg-gradient-to-r from-green-400 via-blue-400 to-purple-400 text-white text-center py-2 font-semibold tracking-wide animate-gradient-x">
+        🚚 Free Shipping on all orders over $50!
+      </div>
+
       {/* Navbar */}
       <nav className="w-full flex items-center justify-between px-8 py-5 bg-white/80 dark:bg-zinc-900/80 shadow-md sticky top-0 z-20 backdrop-blur">
         <div className="flex items-center gap-2">
@@ -59,12 +70,13 @@ export default function Home() {
         </p>
         <a
           href="#products"
-          className="inline-block px-8 py-3 rounded-full bg-zinc-900 text-white font-semibold text-lg shadow hover:scale-105 hover:bg-zinc-700 transition-all dark:bg-zinc-800 dark:hover:bg-zinc-700 animate-fade-in-up delay-200"
+          className="inline-block px-8 py-3 rounded-full bg-zinc-900 text-white font-semibold text-lg shadow hover:scale-105 hover:bg-zinc-700 transition-all dark:bg-zinc-800 dark:hover:bg-zinc-700 animate-fade-in-up delay-200 animate-pulse-cta"
         >
           Shop Now
         </a>
-        <div className="mt-12 animate-fade-in-up delay-300">
+        <div className="mt-12 animate-fade-in-up delay-300 relative inline-block">
           <Image src="/product1.jpg" alt="Featured Product" width={220} height={220} className="rounded-2xl shadow-xl border-4 border-white dark:border-zinc-900 mx-auto" />
+          <span className="absolute top-2 left-2 bg-gradient-to-r from-yellow-400 to-pink-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow animate-bounce-badge">Bestseller</span>
         </div>
       </section>
 
@@ -75,7 +87,7 @@ export default function Home() {
           {products.map((product, idx) => (
             <div
               key={product.name}
-              className="group bg-white dark:bg-zinc-900 rounded-2xl shadow-lg p-6 flex flex-col items-center hover:scale-105 hover:shadow-2xl transition-all duration-300 relative overflow-hidden animate-fade-in-up"
+              className="group bg-white dark:bg-zinc-900 rounded-2xl shadow-lg p-6 flex flex-col items-center hover:scale-105 hover:shadow-2xl transition-all duration-300 relative overflow-hidden animate-fade-in-up border-2 border-transparent hover:border-gradient"
               style={{ animationDelay: `${idx * 100}ms` }}
             >
               <div className="w-32 h-32 mb-4 relative">
@@ -94,6 +106,28 @@ export default function Home() {
               <button className="px-5 py-2 rounded-full bg-zinc-900 text-white font-medium shadow hover:scale-105 hover:bg-zinc-700 transition-all dark:bg-zinc-800 dark:hover:bg-zinc-700">Add to Cart</button>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="w-full max-w-4xl mx-auto px-4 py-16">
+        <h2 className="text-2xl font-bold text-zinc-800 dark:text-zinc-100 mb-8 text-center">What Our Customers Say</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="bg-white dark:bg-zinc-900 rounded-xl shadow p-6 flex flex-col items-center text-center animate-fade-in-up">
+            <Image src="/avatar1.png" alt="Customer 1" width={56} height={56} className="rounded-full mb-3" />
+            <p className="text-zinc-700 dark:text-zinc-200 mb-2">“Absolutely love the sneakers! Super comfy and stylish.”</p>
+            <span className="text-sm text-zinc-500 dark:text-zinc-400 font-medium">— Sarah M.</span>
+          </div>
+          <div className="bg-white dark:bg-zinc-900 rounded-xl shadow p-6 flex flex-col items-center text-center animate-fade-in-up delay-100">
+            <Image src="/avatar2.png" alt="Customer 2" width={56} height={56} className="rounded-full mb-3" />
+            <p className="text-zinc-700 dark:text-zinc-200 mb-2">“The leather bag is my new favorite. Great quality!”</p>
+            <span className="text-sm text-zinc-500 dark:text-zinc-400 font-medium">— Alex R.</span>
+          </div>
+          <div className="bg-white dark:bg-zinc-900 rounded-xl shadow p-6 flex flex-col items-center text-center animate-fade-in-up delay-200">
+            <Image src="/avatar3.png" alt="Customer 3" width={56} height={56} className="rounded-full mb-3" />
+            <p className="text-zinc-700 dark:text-zinc-200 mb-2">“Fast shipping and the smartwatch is amazing. Highly recommend!”</p>
+            <span className="text-sm text-zinc-500 dark:text-zinc-400 font-medium">— Jamie L.</span>
+          </div>
         </div>
       </section>
 
@@ -135,19 +169,6 @@ export default function Home() {
         </div>
       </footer>
 
-      {/* Animations */}
-      <style jsx global>{`
-        @keyframes fade-in-up {
-          0% { opacity: 0; transform: translateY(40px); }
-          100% { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in-up {
-          animation: fade-in-up 0.7s cubic-bezier(0.23, 1, 0.32, 1) both;
-        }
-        .delay-100 { animation-delay: 0.1s; }
-        .delay-200 { animation-delay: 0.2s; }
-        .delay-300 { animation-delay: 0.3s; }
-      `}</style>
     </div>
   );
 }
