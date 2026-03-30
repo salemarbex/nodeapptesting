@@ -1,65 +1,110 @@
+
+
 import Image from "next/image";
+
+const products = [
+  {
+    name: "Minimalist Sneakers",
+    image: "/product1.jpg",
+    price: "$89",
+    description: "Lightweight, stylish, and perfect for everyday wear.",
+  },
+  {
+    name: "Classic Leather Bag",
+    image: "/product2.jpg",
+    price: "$129",
+    description: "Premium leather, timeless design, fits all essentials.",
+  },
+  {
+    name: "Smartwatch Pro",
+    image: "/product3.jpg",
+    price: "$199",
+    description: "Track your health and stay connected in style.",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <div className="min-h-screen bg-gradient-to-br from-zinc-100 via-zinc-50 to-white dark:from-zinc-900 dark:via-zinc-950 dark:to-black font-sans">
+      {/* Hero Section */}
+      <section className="w-full px-4 py-20 flex flex-col items-center text-center bg-white/80 dark:bg-zinc-900/80 shadow-lg">
+        <h1 className="text-5xl sm:text-6xl font-extrabold tracking-tight text-zinc-900 dark:text-zinc-50 mb-4">
+          Elevate Your Style
+        </h1>
+        <p className="text-lg sm:text-xl text-zinc-600 dark:text-zinc-300 max-w-2xl mb-8">
+          Discover the latest in modern fashion and tech. Shop exclusive products, curated for you.
+        </p>
+        <a
+          href="#products"
+          className="inline-block px-8 py-3 rounded-full bg-zinc-900 text-white font-semibold text-lg shadow hover:bg-zinc-700 transition-colors dark:bg-zinc-800 dark:hover:bg-zinc-700"
+        >
+          Shop Now
+        </a>
+      </section>
+
+      {/* Product Highlights */}
+      <section id="products" className="w-full max-w-5xl mx-auto px-4 py-16">
+        <h2 className="text-3xl font-bold text-zinc-800 dark:text-zinc-100 mb-10 text-center">
+          Featured Products
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          {products.map((product) => (
+            <div
+              key={product.name}
+              className="bg-white dark:bg-zinc-900 rounded-2xl shadow-lg p-6 flex flex-col items-center hover:scale-105 transition-transform"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+              <div className="w-32 h-32 mb-4 relative">
+                <Image
+                  src={product.image}
+                  alt={product.name}
+                  fill
+                  style={{ objectFit: "cover", borderRadius: "1rem" }}
+                  sizes="128px"
+                />
+              </div>
+              <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50 mb-2">
+                {product.name}
+              </h3>
+              <p className="text-zinc-600 dark:text-zinc-300 mb-2 text-center">
+                {product.description}
+              </p>
+              <span className="text-lg font-bold text-zinc-800 dark:text-zinc-100 mb-4">
+                {product.price}
+              </span>
+              <button className="px-5 py-2 rounded-full bg-zinc-900 text-white font-medium shadow hover:bg-zinc-700 transition-colors dark:bg-zinc-800 dark:hover:bg-zinc-700">
+                Add to Cart
+              </button>
+            </div>
+          ))}
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      </section>
+
+      {/* Newsletter Signup */}
+      <section className="w-full px-4 py-12 flex flex-col items-center bg-zinc-50 dark:bg-zinc-900">
+        <h2 className="text-2xl font-bold text-zinc-800 dark:text-zinc-100 mb-4">Stay in the Loop</h2>
+        <p className="text-zinc-600 dark:text-zinc-300 mb-6 text-center max-w-md">
+          Subscribe to our newsletter for exclusive offers and the latest updates.
+        </p>
+        <form className="flex flex-col sm:flex-row gap-3 w-full max-w-md">
+          <input
+            type="email"
+            required
+            placeholder="Enter your email"
+            className="flex-1 px-4 py-2 rounded-full border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-zinc-400"
+          />
+          <button
+            type="submit"
+            className="px-6 py-2 rounded-full bg-zinc-900 text-white font-semibold shadow hover:bg-zinc-700 transition-colors dark:bg-zinc-800 dark:hover:bg-zinc-700"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+            Subscribe
+          </button>
+        </form>
+      </section>
+
+      {/* Footer */}
+      <footer className="w-full py-6 text-center text-zinc-500 dark:text-zinc-400 text-sm bg-transparent">
+        &copy; {new Date().getFullYear()} ModernStore. All rights reserved.
+      </footer>
     </div>
   );
 }
