@@ -31,13 +31,15 @@ const socials = [
 ];
 
 
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-zinc-100 via-zinc-50 to-white dark:from-zinc-900 dark:via-zinc-950 dark:to-black font-sans relative">
       {/* Floating Cart Button */}
-      <button className="fixed bottom-8 right-8 z-50 bg-zinc-900 text-white p-4 rounded-full shadow-lg hover:bg-zinc-700 transition-colors dark:bg-zinc-800 dark:hover:bg-zinc-700 flex items-center gap-2 animate-bounce-cart">
-        <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h7.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      <button className="fixed bottom-8 right-8 z-50 bg-zinc-900 text-white p-5 rounded-full shadow-2xl hover:bg-zinc-700 transition-colors dark:bg-zinc-800 dark:hover:bg-zinc-700 flex items-center gap-2 animate-bounce-cart border-4 border-white dark:border-zinc-900">
+        <svg width="28" height="28" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h7.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
         <span className="hidden sm:inline">Cart</span>
+        <span className="absolute -top-2 -right-2 bg-pink-500 text-white text-xs font-bold px-2 py-0.5 rounded-full shadow">2</span>
       </button>
 
       {/* Free Shipping Banner */}
@@ -59,73 +61,85 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative w-full flex flex-col items-center justify-center text-center min-h-[60vh] py-24 px-4 overflow-hidden">
+      <section className="relative w-full flex flex-col-reverse md:flex-row items-center justify-between gap-12 md:gap-0 min-h-[70vh] py-20 px-4 md:px-16 overflow-hidden">
         <div className="absolute inset-0 -z-10">
           <Image src="/hero-bg.jpg" alt="Hero Background" fill priority className="object-cover object-center opacity-40 dark:opacity-30" />
           <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-transparent to-zinc-100 dark:from-zinc-900/90 dark:to-black" />
+          <div className="absolute -top-32 -left-32 w-96 h-96 bg-gradient-to-tr from-pink-200 via-blue-200 to-purple-200 opacity-30 rounded-full blur-3xl" />
         </div>
-        <h1 className="text-5xl sm:text-6xl font-extrabold tracking-tight text-zinc-900 dark:text-zinc-50 mb-4 animate-fade-in-up">Elevate Your Style</h1>
-        <p className="text-lg sm:text-xl text-zinc-600 dark:text-zinc-300 max-w-2xl mb-8 animate-fade-in-up delay-100">
-          Discover the latest in modern fashion and tech. Shop exclusive products, curated for you.
-        </p>
-        <a
-          href="#products"
-          className="inline-block px-8 py-3 rounded-full bg-zinc-900 text-white font-semibold text-lg shadow hover:scale-105 hover:bg-zinc-700 transition-all dark:bg-zinc-800 dark:hover:bg-zinc-700 animate-fade-in-up delay-200 animate-pulse-cta"
-        >
-          Shop Now
-        </a>
-        <div className="mt-12 animate-fade-in-up delay-300 relative inline-block">
-          <Image src="/product1.jpg" alt="Featured Product" width={220} height={220} className="rounded-2xl shadow-xl border-4 border-white dark:border-zinc-900 mx-auto" />
-          <span className="absolute top-2 left-2 bg-gradient-to-r from-yellow-400 to-pink-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow animate-bounce-badge">Bestseller</span>
+        <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-left">
+          <div className="mb-4 w-24 h-2 bg-gradient-to-r from-pink-500 via-blue-500 to-purple-500 rounded-full mb-8" />
+          <h1 className="text-5xl sm:text-6xl font-extrabold tracking-tight text-zinc-900 dark:text-zinc-50 mb-4 animate-fade-in-up">Elevate Your Style</h1>
+          <p className="text-lg sm:text-xl text-zinc-600 dark:text-zinc-300 max-w-xl mb-8 animate-fade-in-up delay-100">
+            Discover the latest in modern fashion and tech. Shop exclusive products, curated for you.
+          </p>
+          <a
+            href="#products"
+            className="inline-block px-10 py-4 rounded-full bg-zinc-900 text-white font-semibold text-lg shadow-lg hover:scale-105 hover:bg-zinc-700 transition-all dark:bg-zinc-800 dark:hover:bg-zinc-700 animate-fade-in-up delay-200 animate-pulse-cta"
+          >
+            Shop Now
+          </a>
+        </div>
+        <div className="flex-1 flex flex-col items-center justify-center relative animate-fade-in-up delay-300">
+          <div className="relative inline-block">
+            <Image src="/product1.jpg" alt="Featured Product" width={280} height={280} className="rounded-3xl shadow-2xl border-4 border-white dark:border-zinc-900 mx-auto" />
+            <span className="absolute top-2 left-2 bg-gradient-to-r from-yellow-400 to-pink-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow animate-bounce-badge">Bestseller</span>
+          </div>
         </div>
       </section>
 
       {/* Product Highlights */}
-      <section id="products" className="w-full max-w-5xl mx-auto px-4 py-16">
-        <h2 className="text-3xl font-bold text-zinc-800 dark:text-zinc-100 mb-10 text-center">Featured Products</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+      <section id="products" className="w-full max-w-6xl mx-auto px-4 py-20">
+        <div className="flex flex-col items-center mb-12">
+          <div className="w-20 h-2 bg-gradient-to-r from-pink-500 via-blue-500 to-purple-500 rounded-full mb-4" />
+          <h2 className="text-3xl font-bold text-zinc-800 dark:text-zinc-100 text-center">Featured Products</h2>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
           {products.map((product, idx) => (
             <div
               key={product.name}
-              className="group bg-white dark:bg-zinc-900 rounded-2xl shadow-lg p-6 flex flex-col items-center hover:scale-105 hover:shadow-2xl transition-all duration-300 relative overflow-hidden animate-fade-in-up border-2 border-transparent hover:border-gradient"
+              className="group bg-white dark:bg-zinc-900 rounded-3xl shadow-xl p-8 flex flex-col items-center hover:scale-105 hover:shadow-2xl transition-all duration-300 relative overflow-hidden animate-fade-in-up border-2 border-transparent hover:border-gradient"
               style={{ animationDelay: `${idx * 100}ms` }}
             >
-              <div className="w-32 h-32 mb-4 relative">
+              <div className="w-36 h-36 mb-5 relative">
                 <Image
                   src={product.image}
                   alt={product.name}
                   fill
-                  style={{ objectFit: "cover", borderRadius: "1rem" }}
-                  sizes="128px"
+                  style={{ objectFit: "cover", borderRadius: "1.5rem" }}
+                  sizes="144px"
                   className="group-hover:scale-110 transition-transform duration-300"
                 />
               </div>
               <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50 mb-2">{product.name}</h3>
               <p className="text-zinc-600 dark:text-zinc-300 mb-2 text-center">{product.description}</p>
               <span className="text-lg font-bold text-zinc-800 dark:text-zinc-100 mb-4">{product.price}</span>
-              <button className="px-5 py-2 rounded-full bg-zinc-900 text-white font-medium shadow hover:scale-105 hover:bg-zinc-700 transition-all dark:bg-zinc-800 dark:hover:bg-zinc-700">Add to Cart</button>
+              <button className="px-6 py-2 rounded-full bg-zinc-900 text-white font-medium shadow hover:scale-105 hover:bg-zinc-700 transition-all dark:bg-zinc-800 dark:hover:bg-zinc-700">Add to Cart</button>
             </div>
           ))}
         </div>
       </section>
 
       {/* Testimonials Section */}
-      <section className="w-full max-w-4xl mx-auto px-4 py-16">
-        <h2 className="text-2xl font-bold text-zinc-800 dark:text-zinc-100 mb-8 text-center">What Our Customers Say</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-white dark:bg-zinc-900 rounded-xl shadow p-6 flex flex-col items-center text-center animate-fade-in-up">
-            <Image src="/avatar1.png" alt="Customer 1" width={56} height={56} className="rounded-full mb-3" />
-            <p className="text-zinc-700 dark:text-zinc-200 mb-2">“Absolutely love the sneakers! Super comfy and stylish.”</p>
+      <section className="w-full max-w-5xl mx-auto px-4 py-20">
+        <div className="flex flex-col items-center mb-12">
+          <div className="w-20 h-2 bg-gradient-to-r from-pink-500 via-blue-500 to-purple-500 rounded-full mb-4" />
+          <h2 className="text-2xl font-bold text-zinc-800 dark:text-zinc-100 text-center">What Our Customers Say</h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div className="bg-white dark:bg-zinc-900 rounded-3xl shadow-xl p-8 flex flex-col items-center text-center animate-fade-in-up">
+            <Image src="/avatar1.png" alt="Customer 1" width={64} height={64} className="rounded-full mb-4 border-4 border-pink-200" />
+            <p className="text-zinc-700 dark:text-zinc-200 mb-3">“Absolutely love the sneakers! Super comfy and stylish.”</p>
             <span className="text-sm text-zinc-500 dark:text-zinc-400 font-medium">— Sarah M.</span>
           </div>
-          <div className="bg-white dark:bg-zinc-900 rounded-xl shadow p-6 flex flex-col items-center text-center animate-fade-in-up delay-100">
-            <Image src="/avatar2.png" alt="Customer 2" width={56} height={56} className="rounded-full mb-3" />
-            <p className="text-zinc-700 dark:text-zinc-200 mb-2">“The leather bag is my new favorite. Great quality!”</p>
+          <div className="bg-white dark:bg-zinc-900 rounded-3xl shadow-xl p-8 flex flex-col items-center text-center animate-fade-in-up delay-100">
+            <Image src="/avatar2.png" alt="Customer 2" width={64} height={64} className="rounded-full mb-4 border-4 border-blue-200" />
+            <p className="text-zinc-700 dark:text-zinc-200 mb-3">“The leather bag is my new favorite. Great quality!”</p>
             <span className="text-sm text-zinc-500 dark:text-zinc-400 font-medium">— Alex R.</span>
           </div>
-          <div className="bg-white dark:bg-zinc-900 rounded-xl shadow p-6 flex flex-col items-center text-center animate-fade-in-up delay-200">
-            <Image src="/avatar3.png" alt="Customer 3" width={56} height={56} className="rounded-full mb-3" />
-            <p className="text-zinc-700 dark:text-zinc-200 mb-2">“Fast shipping and the smartwatch is amazing. Highly recommend!”</p>
+          <div className="bg-white dark:bg-zinc-900 rounded-3xl shadow-xl p-8 flex flex-col items-center text-center animate-fade-in-up delay-200">
+            <Image src="/avatar3.png" alt="Customer 3" width={64} height={64} className="rounded-full mb-4 border-4 border-purple-200" />
+            <p className="text-zinc-700 dark:text-zinc-200 mb-3">“Fast shipping and the smartwatch is amazing. Highly recommend!”</p>
             <span className="text-sm text-zinc-500 dark:text-zinc-400 font-medium">— Jamie L.</span>
           </div>
         </div>
